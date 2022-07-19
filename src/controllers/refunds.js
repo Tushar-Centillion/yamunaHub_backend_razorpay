@@ -53,7 +53,7 @@ const CreateRefund = async (req, res) => {
 				});
 				const dataasp = await clientasp.post(AspRefundUrl, payloadRefund);
 				console.log('dataasp', dataasp);
-				if (dataasp) res.json(dataasp);
+				if (dataasp.status == 200) res.json({ status: true });
 			}
 		}
 		// console.log('refund', refund);
