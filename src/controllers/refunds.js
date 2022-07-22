@@ -99,5 +99,44 @@ const getByidRefund = async (req, res) => {
 		res.status(500).send(error);
 	}
 };
-
-export default { CreateRefund, getByidRefund };
+const CreateShiping = async (req, res) => {
+	try {
+		let RefundUrl = `https://shipway.in/api/PushOrderData`;
+		const client = axios.create({
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		});
+		const { data } = await client.post(RefundUrl, req.body);
+		if (data) {
+			console.log('data', data);
+			res.json(data);
+		} else {
+			throw new Error('some thing right worng!..');
+		}
+	} catch (error) {
+		console.log('error', error);
+		res.status(500).send(error);
+	}
+};
+const GetShiping = async (req, res) => {
+	try {
+		let RefundUrl2 = `https://shipway.in/api/getOrderShipmentDetails`;
+		const client2 = axios.create({
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		});
+		const { data } = await client2.post(RefundUrl2, req.body);
+		console.log('data1', data);
+		if (data) {
+			res.json(data);
+		} else {
+			throw new Error('some thing right worng!..');
+		}
+	} catch (error) {
+		console.log('error', error);
+		res.status(500).send(error);
+	}
+};
+export default { CreateRefund, getByidRefund, CreateShiping, GetShiping };
