@@ -43,6 +43,7 @@ const CreateRefund = async (req, res) => {
 					status: data.status ? data.status : '',
 					batch_Id: data.batch_Id ? data.batch_Id : '',
 					speed_Requested: data.speed_Requested ? data.speed_Requested : '',
+					paymentType: 'onlinePayment',
 				};
 				console.log('payloadRefund', payloadRefund);
 				let AspRefundUrl = `http://143.110.186.132:1454/api/Refund/CreateRefund`;
